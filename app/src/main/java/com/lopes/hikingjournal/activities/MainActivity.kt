@@ -1,15 +1,18 @@
-package com.lopes.hikingjournal
+package com.lopes.hikingjournal.activities
 
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import com.lopes.hikingjournal.R
 import dev.hotwire.navigation.activities.HotwireActivity
 import dev.hotwire.navigation.navigator.NavigatorConfiguration
 import dev.hotwire.navigation.util.applyDefaultImeWindowInsets
 import dev.hotwire.core.config.Hotwire
 import dev.hotwire.core.turbo.config.PathConfiguration
 
-const val baseURL = "http://10.0.2.2:3000"
+ // const val baseURL = "http://10.0.2.2:3000"
+
+const val baseURL = "http://192.168.0.18:3000"
 
 class MainActivity : HotwireActivity() {
     override fun navigatorConfigurations() = listOf(
