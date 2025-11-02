@@ -10,8 +10,9 @@ import dev.hotwire.navigation.tabs.HotwireBottomNavigationController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lopes.hikingjournal.models.mainTabs
 import dev.hotwire.navigation.tabs.navigatorConfigurations
+import android.util.Log
 
-  const val baseURL = "http://10.0.2.2:3000"
+  const val baseURL = "http://10.0.2.2:3001"
 
 //const val baseURL = "http://192.168.0.18:3000"
 
@@ -25,7 +26,10 @@ class MainActivity : HotwireActivity() {
         findViewById<View>(R.id.main).applyDefaultImeWindowInsets()
 
         initializeBottomTabs()
+
     }
+
+
 
     override fun navigatorConfigurations() = mainTabs.navigatorConfigurations
 

@@ -7,6 +7,9 @@ import dev.hotwire.core.turbo.config.PathConfiguration
 import com.lopes.hikingjournal.fragments.MapFragment
 import dev.hotwire.navigation.config.registerFragmentDestinations
 import dev.hotwire.navigation.fragments.HotwireWebFragment
+import com.lopes.hikingjournal.components.ButtonComponent
+import dev.hotwire.core.bridge.BridgeComponentFactory
+import dev.hotwire.navigation.config.registerBridgeComponents
 
 class HikingJournalApplication : Application() {
     override fun onCreate() {
@@ -24,6 +27,11 @@ class HikingJournalApplication : Application() {
         Hotwire.registerFragmentDestinations(
             HotwireWebFragment::class,
             MapFragment::class
+        )
+
+        // map bridge components
+        Hotwire.registerBridgeComponents(
+            BridgeComponentFactory("button", ::ButtonComponent)
         )
     }
 }
