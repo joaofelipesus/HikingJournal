@@ -11,6 +11,11 @@ import android.view.Gravity
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.compose.material3.Button
+import androidx.compose.runtime.Composable
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.graphics.Color
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 class ButtonComponent(
     name: String,
@@ -31,14 +36,16 @@ class ButtonComponent(
     }
 
     private fun addButton (message: Message) {
+        // guard clause
+        val data = message.data<MessageData>() ?: return
+
         val composeView = ComposeView(fragment.requireContext()).apply {
             id = buttonId
             setContent {
-                Button(
+                ToolbarButton(
+                    title = data.title,
                     onClick = { replyTo(message.event) }
-                ) {
-                    Text("Sign in")
-                }
+                )
             }
         }
 
@@ -57,3 +64,21 @@ class ButtonComponent(
         toolbar?.removeView(button)
     }
 }
+
+@Composable
+private fun ToolbarButton(title: String, onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Transparent,
+            contentColor = Color.Black
+        )
+    ) {
+        Text(title)
+    }
+}
+
+@Serializable
+data class MessageData(
+    @SerialName("title") val title: String
+)

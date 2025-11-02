@@ -26,10 +26,7 @@ class MainActivity : HotwireActivity() {
         findViewById<View>(R.id.main).applyDefaultImeWindowInsets()
 
         initializeBottomTabs()
-
     }
-
-
 
     override fun navigatorConfigurations() = mainTabs.navigatorConfigurations
 

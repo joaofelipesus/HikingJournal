@@ -9,6 +9,7 @@ import dev.hotwire.navigation.config.registerFragmentDestinations
 import dev.hotwire.navigation.fragments.HotwireWebFragment
 import com.lopes.hikingjournal.components.ButtonComponent
 import dev.hotwire.core.bridge.BridgeComponentFactory
+import dev.hotwire.core.bridge.KotlinXJsonConverter
 import dev.hotwire.navigation.config.registerBridgeComponents
 
 class HikingJournalApplication : Application() {
@@ -33,5 +34,8 @@ class HikingJournalApplication : Application() {
         Hotwire.registerBridgeComponents(
             BridgeComponentFactory("button", ::ButtonComponent)
         )
+
+        // configure JSON parser
+        Hotwire.config.jsonConverter = KotlinXJsonConverter()
     }
 }
