@@ -16,6 +16,11 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
+import com.lopes.hikingjournal.R
 
 class ButtonComponent(
     name: String,
@@ -44,6 +49,7 @@ class ButtonComponent(
             setContent {
                 ToolbarButton(
                     title = data.title,
+                    iconName = data.iconName,
                     onClick = { replyTo(message.event) }
                 )
             }
@@ -66,7 +72,7 @@ class ButtonComponent(
 }
 
 @Composable
-private fun ToolbarButton(title: String, onClick: () -> Unit) {
+private fun ToolbarButton(title: String, iconName: String?, onClick: () -> Unit) {
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
@@ -74,11 +80,19 @@ private fun ToolbarButton(title: String, onClick: () -> Unit) {
             contentColor = Color.Black
         )
     ) {
-        Text(title)
+        iconName?.let {
+            Text(
+                text = it,
+                fontFamily = FontFamily(Font(R.font.material_symbols)),
+                fontSize = 28.sp,
+                style = TextStyle(fontFeatureSettings = "liga")
+            )
+        } ?: Text(title)
     }
 }
 
 @Serializable
 data class MessageData(
-    @SerialName("title") val title: String
+    @SerialName("title") val title: String,
+    @SerialName("iconName") val iconName: String?
 )
